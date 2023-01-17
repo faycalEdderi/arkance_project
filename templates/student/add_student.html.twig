@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/style.css')}}">
+{% endblock %}
+{% block body %}
+
+
+<h2 class="text-center">Formulaire</h2>
+
+<form method="post">
+<p>
+{{ form_label(form.first_name, 'Prenom : ') }}
+{{ form_widget(form.first_name, { attr : { placeholder: 'Prenom ', autofocus : 'autofocus'}}) }}
+</p>
+<p>
+{{ form_label(form.last_name, 'Nom : ') }}
+{{ form_widget(form.last_name, { attr : { placeholder: 'Nom'}}) }}
+</p>
+<p>
+{{ form_label(form.gender, 'Genre : ') }}
+{{ form_widget(form.gender) }}
+</p>
+<p>
+{{ form_label(form.schoolClass, 'Classe : ') }}
+{{ form_widget(form.schoolClass) }}
+</p>
+
+<p>
+    <input type="submit" />
+</p>
+
+</form>
+
+
+
+{% endblock %}
