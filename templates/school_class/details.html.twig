@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'parent.html.twig' %}
 
 {% block title %} {{parent() }}  Fiche détaillée  {% endblock %}
 {% block stylesheets %}
@@ -6,7 +6,7 @@
 {% endblock %}
 {% block body %}
 
-
+{% block main %}
 <h2 class="text-center">Class de {{ classDetails.level | capitalize}}</h2>
 
         
@@ -29,7 +29,7 @@
 
 
 
-  
+{% endblock%}
        
   
 
