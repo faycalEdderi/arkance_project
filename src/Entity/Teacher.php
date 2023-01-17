@@ -25,6 +25,10 @@ class Teacher
     #[ORM\OneToOne(mappedBy: 'first_teacher', cascade: ['persist', 'remove'])]
     private ?SchoolClass $head_schoolClass = null;
 
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Subject $teacher_class = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -85,8 +89,22 @@ class Teacher
         return $this;
     }
 
+
+
+    public function getTeacherClass(): ?Subject
+    {
+        return $this->teacher_class;
+    }
+
+    public function setTeacherClass(Subject $teacher_class): self
+    {
+        $this->teacher_class = $teacher_class;
+
+        return $this;
+    }
+
     public function __toString()
     {
-        return $this->head_schoolClass;
+        return $this->head_schoolClass . ' ' . $this->teacher_class . ' ' . $this->last_name;
     }
 }

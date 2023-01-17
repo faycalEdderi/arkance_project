@@ -1,0 +1,40 @@
+{% extends 'parent.html.twig' %}
+
+{% block title %}Liste des enseignants!{% endblock %}
+
+{% block body %}
+{% block main %}
+
+
+       <table class="table table-striped">
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Genre</th>
+            <th>Matière</th>
+           
+        </tr>
+        {% for teacherInfo in subject %}
+        <tr>
+            
+         
+            <td>{{ teacherInfo.subjectTeacher.lastName |capitalize}} </td>
+            <td>{{ teacherInfo.subjectTeacher.firstName |capitalize}} </td>
+            <td>{{ teacherInfo.subjectTeacher.gender |capitalize}}</td>
+            <td>{{ teacherInfo.subjectName |capitalize}}</td>
+           
+
+           
+                             
+           
+            
+        
+                     
+        </tr>
+     
+        {% endfor %}            
+</div>
+
+
+{% endblock%}
+{% endblock %}

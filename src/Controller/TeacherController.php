@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\SubjectRepository;
 use App\Repository\TeacherRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,6 +19,21 @@ class TeacherController extends AbstractController
 
         return $this->render('teacher/index.html.twig', [
             'teacher' => $teacher,
+        ]);
+    }
+
+
+    #[Route('/teachers', name: 'teachers_list')]
+    public function teacher_list(TeacherRepository $teacherRepository, SubjectRepository $subjectRepository): Response
+    {
+        $teachers = $teacherRepository->findAll();
+        $subject = $subjectRepository->findAll();
+
+        //var_dump($subject);
+
+        return $this->render('teacher/teachers_list.html.twig', [
+            'teachers' => $teachers,
+            'subject' => $subject,
         ]);
     }
 }

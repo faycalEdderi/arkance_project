@@ -28,9 +28,7 @@ class SchoolClassController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/product/{id}", name="product.details")
-     */
+
     #[Route('/class/{id}', name: 'class_detail')]
     public function details(int $id, SchoolClassRepository $schoolClassRepository): Response
     {
