@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{parent() }}  Fiche détaillée  {% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/style.css')}}">
+{% endblock %}
+{% block body %}
+
+
+<h2 class="text-center">Class de {{ classDetails.level | capitalize}}</h2>
+
+        
+        
+
+
+<p>Professeur principal : {{ classDetails.firstTeacher.lastName | capitalize}} {{ classDetails.firstTeacher.firstName | capitalize}}</p>
+
+<p>Eleves :</p>
+
+<ul>
+   
+
+    {% for student in classDetails.classStudents %}
+    <li>{{ student.lastName | capitalize }} {{ student.firstName | capitalize }}</li>
+{% endfor %}
+   
+</ul>
+    
+
+
+
+  
+       
+  
+
+
+
+
+
+
+                   
+        
+
+
+
+
+{% endblock %}

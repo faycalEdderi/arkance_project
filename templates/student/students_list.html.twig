@@ -14,17 +14,22 @@
 
        <table class="table table-striped">
         <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Genre</th>
             <th>Classe</th>
-            <th>Professeur Principal</th>
            
         </tr>
-        {% for teacherInfo in teacher %}
+        {% for studentInfo in student %}
         <tr>
-            {% if teacherInfo.headSchoolClass.level is defined and teacherInfo.headSchoolClass.level is not null %} 
-            <td> {{ teacherInfo.headSchoolClass.level }}</td>
-            <td>{{ teacherInfo.lastName }} {{ teacherInfo.firstName }}</td>
+            
+         
+            <td>{{ studentInfo.lastName |capitalize}} </td>
+            <td>{{ studentInfo.firstName |capitalize}} </td>
+            <td>{{ studentInfo.gender |capitalize}}</td>
+            <td>{{ studentInfo.schoolClass.level }}</td>
         
-        {% endif %}
+        
                      
         </tr>
      

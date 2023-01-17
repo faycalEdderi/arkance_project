@@ -15,7 +15,7 @@ class SchoolClassController extends AbstractController
 {
     private $logger;
 
-    #[Route('/class', name: 'app_school_class')]
+    #[Route('/class/test', name: 'app_school_class')]
     public function index(SchoolClassRepository $schoolClassRepository, EntityManagerInterface $em): Response
     {
         $schoolClass = $schoolClassRepository->findAll();
@@ -26,5 +26,17 @@ class SchoolClassController extends AbstractController
         return $this->render('school_class/index.html.twig', [
             'schoolClass' => $schoolClass,
         ]);
+    }
+
+    /**
+     * @Route("/product/{id}", name="product.details")
+     */
+    #[Route('/class/{id}', name: 'class_detail')]
+    public function details(int $id, SchoolClassRepository $schoolClassRepository): Response
+    {
+        $classDetails = $schoolClassRepository->find($id);
+
+        // var_dump($classDetails);
+        return $this->render('school_class/details.html.twig', ['classDetails' => $classDetails]);
     }
 }

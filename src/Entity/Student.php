@@ -23,7 +23,7 @@ class Student
     private ?string $last_name = null;
 
     #[ORM\Column(length: 255)]
-    private ?Gender $gender;
+    private ?string $gender;
 
     #[ORM\ManyToMany(targetEntity: Subject::class)]
     private Collection $subject;
@@ -66,12 +66,12 @@ class Student
         return $this;
     }
 
-    public function getGender(): ?Gender
+    public function getGender(): ?string
     {
         return $this->gender;
     }
 
-    public function setGender(Gender $gender): self
+    public function setGender(string $gender): self
     {
         $this->gender = $gender;
 
@@ -112,5 +112,11 @@ class Student
         $this->schoolClass = $schoolClass;
 
         return $this;
+    }
+
+
+    public function __toString()
+    {
+        return $this->schoolClass;
     }
 }

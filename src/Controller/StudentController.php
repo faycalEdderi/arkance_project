@@ -13,7 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class StudentController extends AbstractController
 {
-    #[Route('/student', name: 'student_form')]
+    #[Route('/students/add', name: 'student_form')]
     public function form(Request $request, EntityManagerInterface $entityManager, int $id = null, StudentRepository $studentRepository): Response
     {
 
@@ -40,6 +40,18 @@ class StudentController extends AbstractController
         return $this->render('student/add_student.html.twig', [
             'form' => $form
 
+        ]);
+    }
+
+    #[Route('/students', name: 'student_list')]
+    public function index(StudentRepository $studentRepository): Response
+    {
+        $student = $studentRepository->findAll();
+
+        //var_dump($student);
+
+        return $this->render('student/students_list.html.twig', [
+            'student' => $student,
         ]);
     }
 }
