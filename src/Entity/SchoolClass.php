@@ -47,12 +47,12 @@ class SchoolClass
         return $this;
     }
 
-    public function getHeadTeatcher(): ?Teacher
+    public function getFirst_teacher(): ?Teacher
     {
         return $this->first_teacher;
     }
 
-    public function setHeadTeatcher(Teacher $first_teacher): self
+    public function setFirst_teacher(Teacher $first_teacher): self
     {
         $this->first_teacher = $first_teacher;
 

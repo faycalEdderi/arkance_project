@@ -22,7 +22,7 @@ class Teacher
     #[ORM\Column(length: 255)]
     private ?string $gender = null;
 
-    #[ORM\OneToOne(mappedBy: 'head_teatcher', cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(mappedBy: 'first_teacher', cascade: ['persist', 'remove'])]
     private ?SchoolClass $head_schoolClass = null;
 
     public function getId(): ?int
@@ -71,15 +71,22 @@ class Teacher
         return $this->head_schoolClass;
     }
 
+
+
     public function setHeadSchoolClass(SchoolClass $head_schoolClass): self
     {
         // set the owning side of the relation if necessary
-        if ($head_schoolClass->getHeadTeatcher() !== $this) {
-            $head_schoolClass->setHeadTeatcher($this);
+        if ($head_schoolClass->getFirst_teacher() !== $this) {
+            $head_schoolClass->setFirst_teacher($this);
         }
 
         $this->head_schoolClass = $head_schoolClass;
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->head_schoolClass;
     }
 }
