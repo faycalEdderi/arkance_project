@@ -1,0 +1,34 @@
+{% extends 'parent.html.twig' %}
+
+{% block title %}Hello TeacherController!{% endblock %}
+
+{% block body %}
+{% block main %}
+
+<h2 class="text-center" >Note de {{ studentInfos.studentRating.lastName |capitalize}} {{ studentInfos.studentRating.firstName |capitalize}} </h2>
+       <table class="table table-striped">
+        <tr>
+            <th>Matiere</th>
+            <th>Note</th>
+            
+           
+        </tr>
+      
+        <tr>
+            <td>{{ studentInfos.subject.subjectName}}</td>
+            
+            <td> {{ studentInfos.value}} </td>
+            
+        
+                     
+        </tr>
+
+        
+    
+     
+           
+</div>
+
+
+{% endblock%}
+{% endblock %}

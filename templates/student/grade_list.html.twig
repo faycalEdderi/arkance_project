@@ -1,0 +1,35 @@
+{% extends 'parent.html.twig' %}
+
+{% block title %}Hello TeacherController!{% endblock %}
+
+{% block body %}
+{% block main %}
+
+<h2 class="text-center" >Note de {{ studentInfos.lastName |capitalize}} {{ studentInfos.firstName |capitalize}} </h2>
+       <table class="table table-striped">
+            <tr>
+                <th>Matiere</th>
+                <th>Note</th>
+                
+            
+            </tr>
+            {% for grade in studentInfos.grade %}
+            <tr>
+
+                
+                <td><a href="{{ path('grade_details', { 'id': grade.id }) }}">{{grade.subject.subjectName}} </a></td>
+                <td>{{ grade.value }} </td>
+               
+
+                
+            </tr>
+            {% endfor %}
+        
+
+        
+        </table>
+       
+
+
+{% endblock%}
+{% endblock %}

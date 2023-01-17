@@ -32,9 +32,13 @@ class Student
     #[ORM\JoinColumn(nullable: false)]
     private ?SchoolClass $schoolClass = null;
 
+    #[ORM\OneToMany(mappedBy: 'student_rating', targetEntity: Grade::class, orphanRemoval: true)]
+    private Collection $grade;
+
     public function __construct()
     {
         $this->subject = new ArrayCollection();
+        $this->grade = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -115,8 +119,38 @@ class Student
     }
 
 
+    /**
+     * @return Collection<int, Grade>
+     */
+    public function getGrade(): Collection
+    {
+        return $this->grade;
+    }
+
+    public function addGrade(Grade $grade): self
+    {
+        if (!$this->grade->contains($grade)) {
+            $this->grade->add($grade);
+            $grade->setStudentRating($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGrade(Grade $grade): self
+    {
+        if ($this->grade->removeElement($grade)) {
+            // set the owning side to null (unless already changed)
+            if ($grade->getStudentRating() === $this) {
+                $grade->setStudentRating(null);
+            }
+        }
+
+        return $this;
+    }
+
     public function __toString()
     {
-        return $this->schoolClass;
+        return $this->schoolClass . ' ' . $this->grade . ' ' . $this->subject;
     }
 }

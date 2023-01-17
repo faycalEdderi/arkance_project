@@ -18,8 +18,8 @@
         <tr>
             
          
-            <td>{{ studentInfo.lastName |capitalize}} </td>
-            <td>{{ studentInfo.firstName |capitalize}} </td>
+            <td><a href="{{ path('student_grades', { 'id': studentInfo.id }) }}">{{ studentInfo.lastName |capitalize}} </a></td>
+            <td><a href="{{ path('student_grades', { 'id': studentInfo.id }) }}">{{ studentInfo.firstName |capitalize}} </a></td>
             <td>{{ studentInfo.gender |capitalize}}</td>
             <td>{{ studentInfo.schoolClass.level }}</td>
         

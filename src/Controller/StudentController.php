@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Student;
 use App\Form\StudentType;
+use App\Repository\GradeRepository;
 use App\Repository\StudentRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,6 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class StudentController extends AbstractController
 {
+    // Ajout d'un etudiant en bdd
     #[Route('/students/add', name: 'student_form')]
     public function form(Request $request, EntityManagerInterface $entityManager, int $id = null, StudentRepository $studentRepository): Response
     {
@@ -43,6 +45,7 @@ class StudentController extends AbstractController
         ]);
     }
 
+    // affiche la liste des etudiants
     #[Route('/students', name: 'student_list')]
     public function index(StudentRepository $studentRepository): Response
     {
@@ -52,6 +55,33 @@ class StudentController extends AbstractController
 
         return $this->render('student/students_list.html.twig', [
             'student' => $student,
+        ]);
+    }
+
+    // affiche les details d'une note d'un etudiant
+    #[Route('/grade/{id}', name: 'grade_details')]
+    public function grades_details(int $id, GradeRepository $gradeRepository): Response
+    {
+        $studentInfos = $gradeRepository->find($id);
+
+        //var_dump($studentInfos);
+
+        return $this->render('student/grade_details.html.twig', [
+            'studentInfos' => $studentInfos,
+        ]);
+    }
+
+
+    // Afficher toutes les note d'un etudiant
+    #[Route('/student/{id}', name: 'student_grades')]
+    public function grade_list(int $id, StudentRepository $studentRepository): Response
+    {
+        $studentInfos = $studentRepository->find($id);
+
+        //var_dump($studentInfos);
+
+        return $this->render('student/grade_list.html.twig', [
+            'studentInfos' => $studentInfos,
         ]);
     }
 }

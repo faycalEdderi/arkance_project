@@ -20,6 +20,10 @@ class Grade
     #[ORM\JoinColumn(nullable: false)]
     private ?Subject $subject = null;
 
+    #[ORM\ManyToOne(inversedBy: 'grade')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Student $student_rating = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -47,5 +51,22 @@ class Grade
         $this->subject = $subject;
 
         return $this;
+    }
+
+    public function getStudentRating(): ?Student
+    {
+        return $this->student_rating;
+    }
+
+    public function setStudentRating(?Student $student_rating): self
+    {
+        $this->student_rating = $student_rating;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->subject . ' ' . $this->student_rating;
     }
 }
