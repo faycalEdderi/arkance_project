@@ -20,17 +20,12 @@ class StudentController extends AbstractController
     {
 
         $entity = $id ? $studentRepository->find($id) : new Student();
-        $type = StudentType::class; //renvoi le namespace de la class
-
+        $type = StudentType::class;
 
         $form = $this->createForm($type, $entity);
         $form->handleRequest($request);
 
-        /*
-         *Verifier si formulair est valide
-         *  isValid: formulaire valide
-         *  isSubmitted : formulaire soumis 
-         */
+
         if ($form->isSubmitted() && $form->isValid()) {
 
             $entityManager->persist($entity);

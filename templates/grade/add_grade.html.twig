@@ -1,0 +1,37 @@
+{% extends 'parent.html.twig' %}
+
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/style.css')}}">
+{% endblock %}
+{% block body %}
+{% block main %}
+
+
+<h2 class="text-center">Formulaire</h2>
+
+<form method="post">
+<p>
+{{ form_label(form.value, 'Note : ') }}
+{{ form_errors(form.value) }}
+{{ form_widget(form.value, { attr : { placeholder: 'Note ', autofocus : 'autofocus'}}) }}
+</p>
+<p>
+{{ form_label(form.subject, 'Matiere : ') }}
+{{ form_widget(form.subject)}}
+</p>
+<p>
+{{ form_label(form.student_rating, 'Eleve : ') }}
+{{ form_widget(form.student_rating) }}
+</p>
+
+
+<p>
+    <input type="submit" />
+</p>
+
+</form>
+
+
+{% endblock%}
+{% endblock %}
