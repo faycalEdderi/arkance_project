@@ -10,6 +10,7 @@
             <tr>
                 <th>Matiere</th>
                 <th>Note</th>
+                <th>Action</th>
                 
             
             </tr>
@@ -19,6 +20,8 @@
                 
                 <td><a href="{{ path('grade_details', { 'id': grade.id }) }}">{{grade.subject.subjectName}} </a></td>
                 <td>{{ grade.value }} </td>
+                <td> <a href="{{ url('delete_grade', { id:grade.id}) }}" class="btn btn-danger" >Supprimer</a>
+                </td>
                
 
                 

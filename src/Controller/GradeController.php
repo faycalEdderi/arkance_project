@@ -14,6 +14,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class GradeController extends AbstractController
 {
+
+    //Ajout d'une note
     #[Route('/grade/add', name: 'add_grade')]
     public function add_grade(Request $request, EntityManagerInterface $entityManagerInterface, int $id = null, GradeRepository $gradeRepository): Response
     {
@@ -36,5 +38,17 @@ class GradeController extends AbstractController
         return $this->render('grade/add_grade.html.twig', [
             'form' => $form,
         ]);
+    }
+
+    // Suppression d'un note
+    #[Route('/grade/delete/{id}', name: 'delete_grade')]
+    public function delete(int $id, GradeRepository $gradeRepository, EntityManagerInterface $entityManager): Response
+    {
+
+        $entity = $gradeRepository->find($id);
+        $entityManager->remove($entity);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('student_list');
     }
 }
