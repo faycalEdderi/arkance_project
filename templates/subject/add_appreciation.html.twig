@@ -12,8 +12,10 @@
 
 <form method="post">
 <p>
-
+{{ form_label(form.appreciation, 'appreciation : ') }}
+{{ form_widget(form.appreciation, { attr : { placeholder: 'appreciation ', autofocus : 'autofocus'}}) }}
 </p>
+
 
 
 <p>

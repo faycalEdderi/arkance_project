@@ -13,22 +13,9 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class SchoolClassController extends AbstractController
 {
-    private $logger;
 
-    #[Route('/class/test', name: 'app_school_class')]
-    public function index(SchoolClassRepository $schoolClassRepository, EntityManagerInterface $em): Response
-    {
-        $schoolClass = $schoolClassRepository->findAll();
-
-
-
-
-        return $this->render('school_class/index.html.twig', [
-            'schoolClass' => $schoolClass,
-        ]);
-    }
-
-
+    // affichage de detail d'une note
+    // TODO : ajout un commentaire par note
     #[Route('/class/{id}', name: 'class_detail')]
     public function details(int $id, SchoolClassRepository $schoolClassRepository): Response
     {

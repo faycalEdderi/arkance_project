@@ -10,6 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class TeacherController extends AbstractController
 {
+    // affiche les class et le prof principal
     #[Route('/class', name: 'class_list')]
     public function index(TeacherRepository $teacherRepository): Response
     {
@@ -22,7 +23,7 @@ class TeacherController extends AbstractController
         ]);
     }
 
-
+    // affiche tout les professeurs
     #[Route('/teachers', name: 'teachers_list')]
     public function teacher_list(TeacherRepository $teacherRepository, SubjectRepository $subjectRepository): Response
     {

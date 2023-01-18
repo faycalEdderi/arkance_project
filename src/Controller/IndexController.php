@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class IndexController extends AbstractController
 {
+    // affichage de la homepage
     public function index(Request $request): Response
     {
 

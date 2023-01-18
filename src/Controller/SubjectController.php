@@ -14,7 +14,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class SubjectController extends AbstractController
 {
     //Ajout ou modification d'une appreciation
-
     #[Route('/appreciation/edit/{id}', name: 'edit_appreciation')]
     public function add_grade(Request $request, EntityManagerInterface $entityManagerInterface, int $id = null, SubjectRepository $subjectRepository): Response
     {
