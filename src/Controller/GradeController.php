@@ -17,6 +17,7 @@ class GradeController extends AbstractController
 
     //Ajout d'une note
     #[Route('/grade/add', name: 'add_grade')]
+    #[Route('/grade/edit/{id}', name: 'edit_grade')]
     public function add_grade(Request $request, EntityManagerInterface $entityManagerInterface, int $id = null, GradeRepository $gradeRepository): Response
     {
         $entity = $id ? $gradeRepository->find($id) : new Grade();
@@ -30,7 +31,7 @@ class GradeController extends AbstractController
             $entityManagerInterface->persist($entity);
             $entityManagerInterface->flush();
 
-            return $this->redirectToRoute('add_grade');
+            return $this->redirectToRoute('student_list');
         }
 
 
