@@ -24,6 +24,7 @@ class Grade
     #[ORM\JoinColumn(nullable: false)]
     private ?Student $student_rating = null;
 
+
     public function getId(): ?int
     {
         return $this->id;

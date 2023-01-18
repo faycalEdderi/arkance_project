@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\SubjectRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SubjectRepository::class)]
@@ -24,6 +25,15 @@ class Subject
 
     #[ORM\OneToMany(mappedBy: 'subject', targetEntity: Grade::class, orphanRemoval: true)]
     private Collection $grade;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $appreciation = null;
+
+    #[ORM\ManyToOne(inversedBy: 'subject_appreciation')]
+    private ?Student $student_appreciation = null;
+
+
+
 
     public function __construct()
     {
@@ -89,5 +99,34 @@ class Subject
         }
 
         return $this;
+    }
+
+    public function getAppreciation(): ?string
+    {
+        return $this->appreciation;
+    }
+
+    public function setAppreciation(?string $appreciation): self
+    {
+        $this->appreciation = $appreciation;
+
+        return $this;
+    }
+
+    public function getStudentAppreciation(): ?Student
+    {
+        return $this->student_appreciation;
+    }
+
+    public function setStudentAppreciation(?Student $student_appreciation): self
+    {
+        $this->student_appreciation = $student_appreciation;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return  $this->subject_name;
     }
 }

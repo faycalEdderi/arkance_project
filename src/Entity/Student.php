@@ -35,10 +35,16 @@ class Student
     #[ORM\OneToMany(mappedBy: 'student_rating', targetEntity: Grade::class, orphanRemoval: true)]
     private Collection $grade;
 
+    #[ORM\OneToMany(mappedBy: 'student_appreciation', targetEntity: Subject::class)]
+    private Collection $subject_appreciation;
+
+
+
     public function __construct()
     {
         $this->subject = new ArrayCollection();
         $this->grade = new ArrayCollection();
+        $this->subject_appreciation = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -149,8 +155,41 @@ class Student
         return $this;
     }
 
+
+
+
     public function __toString()
     {
-        return $this->schoolClass . ' ' . $this->grade . ' ' . $this->subject;
+        return $this->schoolClass . ' ' . $this->grade . ' ' . $this->subject . ' ';
+    }
+
+    /**
+     * @return Collection<int, Subject>
+     */
+    public function getSubjectAppreciation(): Collection
+    {
+        return $this->subject_appreciation;
+    }
+
+    public function addSubjectAppreciation(Subject $subjectAppreciation): self
+    {
+        if (!$this->subject_appreciation->contains($subjectAppreciation)) {
+            $this->subject_appreciation->add($subjectAppreciation);
+            $subjectAppreciation->setStudentAppreciation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSubjectAppreciation(Subject $subjectAppreciation): self
+    {
+        if ($this->subject_appreciation->removeElement($subjectAppreciation)) {
+            // set the owning side to null (unless already changed)
+            if ($subjectAppreciation->getStudentAppreciation() === $this) {
+                $subjectAppreciation->setStudentAppreciation(null);
+            }
+        }
+
+        return $this;
     }
 }

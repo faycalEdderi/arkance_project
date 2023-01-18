@@ -15,7 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class GradeController extends AbstractController
 {
 
-    //Ajout d'une note
+    //Ajout ou modification d'une note
     #[Route('/grade/add', name: 'add_grade')]
     #[Route('/grade/edit/{id}', name: 'edit_grade')]
     public function add_grade(Request $request, EntityManagerInterface $entityManagerInterface, int $id = null, GradeRepository $gradeRepository): Response
@@ -33,8 +33,6 @@ class GradeController extends AbstractController
 
             return $this->redirectToRoute('student_list');
         }
-
-
 
         return $this->render('grade/add_grade.html.twig', [
             'form' => $form,

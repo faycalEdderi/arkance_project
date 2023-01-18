@@ -18,8 +18,8 @@
             <tr>
 
                 
-                <td><a href="{{ path('grade_details', { 'id': grade.id }) }}">{{grade.subject.subjectName}} </a></td>
-                <td>{{ grade.value }} </td>
+                <td><a href="{{ path('grade_details', { 'id': grade.id }) }}">{{grade.subject.subjectName}}</td>
+                <td><a href="{{ path('grade_details', { 'id': grade.id }) }}">{{ grade.value }} </a> </td>
                 <td> 
                     <a href="{{ url('edit_grade', { id:grade.id}) }}" class="btn btn-info" >Modifier</a>
                     <a href="{{ url('delete_grade', { id:grade.id}) }}" class="btn btn-danger" >Supprimer</a>
@@ -32,6 +32,33 @@
             {% endfor %}
         
 
+        
+        </table>
+
+
+        <table class="table table-striped">
+            <tr>
+                <th>Matiere</th>
+                <th>Appreciation</th>
+            
+                
+            
+            </tr>
+            {% for studentInfo in studentInfos.subjectAppreciation %}
+            <tr>
+
+                
+                <td>{{studentInfo.subjectName}}</td>
+                <td>{{studentInfo.appreciation}}</td>
+               
+
+                
+            </tr>
+            {% endfor %}
+
+           
+          
+        
         
         </table>
        
